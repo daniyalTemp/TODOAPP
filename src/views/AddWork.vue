@@ -44,7 +44,7 @@
         <ion-alert
             trigger="save"
             header="saved"
-            sub-header="your work saved"
+              sub-header="your work saved"
             message=""
             @didDismiss="save()"
         ></ion-alert>
@@ -71,7 +71,6 @@ export default defineComponent({
 
     },
     save() {
-
       this.Loading = true;
       setTimeout(() => {
         this.$router.replace('/')
@@ -96,5 +95,4 @@ export default defineComponent({
     IonToolbar
   },
 });
-const alertButtons = ['Action']
 </script>

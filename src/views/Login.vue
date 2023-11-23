@@ -13,8 +13,8 @@
 
     <ion-content :fullscreen="true">
       <div id="container">
-        <ion-img  style="  margin-left: 12%;"
-                  src="../public/login.png"
+        <ion-img style="  margin-left: 12%;"
+                 src="../public/login.png"
         ></ion-img>
         <ion-input label="Email" label-placement="floating" fill="solid" placeholder="Enter Email"></ion-input>
         <br>
@@ -23,20 +23,16 @@
         <ion-input label="password" label-placement="floating" fill="solid" placeholder="Enter password"></ion-input>
 
 
-
-
         <ion-progress-bar v-if="this.Loading" type="indeterminate"></ion-progress-bar>
 
         <br>
         <br>
         <br>
-        <ion-button id="login" fill="outline" shape="round" color="success" v-on="Login">Login</ion-button>
+        <ion-button id="login" fill="outline" shape="round" color="success" v-on:click="Login">Login</ion-button>
         <ion-button id="register" fill="solid" shape="round" color="primary" v-on:click="Register">Register</ion-button>
 
       </div>
     </ion-content>
-
-
 
 
   </ion-page>
@@ -69,27 +65,24 @@
         <ion-input label="password" label-placement="floating" fill="solid" placeholder="Enter password"></ion-input>
 
 
-
-
         <ion-progress-bar v-if="this.Loading" type="indeterminate"></ion-progress-bar>
 
         <br>
         <br>
         <br>
-        <ion-button id="login" fill="outline" shape="round" color="success" v-on="Login" >Login</ion-button>
-        <ion-button id="register" fill="solid" shape="round" color="primary" v-on="Register">Register</ion-button>
+        <ion-button id="login" fill="outline" shape="round" color="success" v-on:click="Login">Login</ion-button>
+        <ion-button id="register" fill="solid" shape="round" color="primary" v-on:click="Register">Register</ion-button>
 
       </div>
     </ion-content>
 
 
-
-
   </ion-page>
 </template>
 
-<script  lang="ts">
+<script lang="ts">
 import {
+  alertController,
   IonButtons,
   IonContent, IonDatetime, IonDatetimeButton,
   IonHeader,
@@ -99,32 +92,44 @@ import {
   IonPage, IonProgressBar,
   IonTitle,
   IonToolbar
+
 } from '@ionic/vue';
-import { IonImg } from '@ionic/vue';
+import {IonImg} from '@ionic/vue';
 import {IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,} from '@ionic/vue';
+
+
 export default defineComponent({
   data() {
     return {
       Loading: false,
-      LoginForm :true,
+      LoginForm: true,
       RegisterForm: false,
     }
   },
+
   methods: {
-    Register(){
-      if (this.RegisterForm){
-        //call api server
-      }else {
-        this.RegisterForm= true;
-        this.LoginForm= false;
+    logResult(){
+
+    },
+    Register() {
+      if (this.RegisterForm) {
+        setTimeout(() => {
+          this.$router.replace('/')
+        }, 1000);
+      } else {
+        this.RegisterForm = true;
+        this.LoginForm = false;
       }
     },
-    Login(){
-      if (this.LoginForm){
-        //call api server
-      }else {
-        this.RegisterForm= false;
-        this.LoginForm= true;
+    Login() {
+      if (this.LoginForm) {
+        this.Loading = true;
+        setTimeout(() => {
+          this.$router.replace('/')
+        }, 1000);
+      } else {
+        this.RegisterForm = false;
+        this.LoginForm = true;
       }
     },
     setLoading() {
@@ -165,6 +170,7 @@ import {defineComponent} from "vue";
 
 
 </script>
+
 
 <style scoped>
 #container {
